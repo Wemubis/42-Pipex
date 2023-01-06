@@ -21,13 +21,15 @@ static int	check_files(char *file_1, char *file_2)
 	if (f1 == -1)
 	{
 		perror("file_1");
+		close(f1);
 		exit(EXIT_FAILURE);
 	}
 	close(f1);
-	f2 = open(file_2, O_WRONLY | O_CREAT, 0777);
+	f2 = open(file_2, O_CREAT, 0666);
 	if (f2 == -1)
 	{
 		perror("file_2");
+		close(f2);
 		exit(EXIT_FAILURE);
 	}
 	close(f2);
