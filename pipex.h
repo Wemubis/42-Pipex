@@ -27,7 +27,7 @@ char	**ft_split(char const *s, char c);
 
 /*--------------- FUNCTIONS ---------------*/
 int		ft_pipex(char **av);
-int		left_hand_pipe(int child_pid_1, int fd[2], char ***cmd);
-int		right_hand_pipe(int child_pid_2, int fd[2], char ***cmd);
+int		left_hand_pipe(int child_pid_1, int fd[3], char ***cmd);
+int		right_hand_pipe(int child_pid_2, int fd[3], char ***cmd);
 
 #endif

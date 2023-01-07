@@ -14,7 +14,7 @@
 
 int	ft_pipex(char **av)
 {
-	int		fd[2];
+	int		fd[3];
 	char	**cmd[2];
 	int		child_pid[2];
 
