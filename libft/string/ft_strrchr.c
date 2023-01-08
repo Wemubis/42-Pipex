@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-boud <mle-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/07 12:34:42 by mle-boud          #+#    #+#             */
-/*   Updated: 2023/01/07 12:34:42 by mle-boud         ###   ########.fr       */
+/*   Created: 2022/11/09 14:00:34 by mle-boud          #+#    #+#             */
+/*   Updated: 2022/11/14 15:31:48 by mle-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strrchr(const char *s, int c)
 {
-	if (ac != 5)
+	char	*dst;
+	size_t	len;
+
+	len = ft_strlen(s);
+	if (!len && c != '\0')
+		return (NULL);
+	dst = (char *)s;
+	while (len > 0)
 	{
-		write(1, "e.g.: ./pipex file1 cmd1 cmd2 file2\n", 36);
-		exit(EXIT_FAILURE);
+		if (dst[len] == (unsigned char)c)
+			return (&dst[len]);
+		len--;
 	}
-	else
-		ft_pipex(av);
-	return (0);
+	if (len == 0 && dst[len] == (unsigned char)c)
+		return (&dst[len]);
+	return (NULL);
 }

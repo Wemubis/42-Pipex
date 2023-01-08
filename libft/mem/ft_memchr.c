@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-boud <mle-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/07 12:34:42 by mle-boud          #+#    #+#             */
-/*   Updated: 2023/01/07 12:34:42 by mle-boud         ###   ########.fr       */
+/*   Created: 2022/11/09 14:54:35 by mle-boud          #+#    #+#             */
+/*   Updated: 2022/11/14 13:06:47 by mle-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	if (ac != 5)
+	unsigned char	*ps;
+	unsigned char	ch;
+
+	ch = (unsigned char)c;
+	ps = (unsigned char *)s;
+	while (n)
 	{
-		write(1, "e.g.: ./pipex file1 cmd1 cmd2 file2\n", 36);
-		exit(EXIT_FAILURE);
+		if (*ps == ch)
+			return (ps);
+		ps++;
+		n--;
 	}
-	else
-		ft_pipex(av);
-	return (0);
+	return (NULL);
 }

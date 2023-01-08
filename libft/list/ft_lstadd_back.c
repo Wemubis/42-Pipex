@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-boud <mle-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/07 12:34:42 by mle-boud          #+#    #+#             */
-/*   Updated: 2023/01/07 12:34:42 by mle-boud         ###   ########.fr       */
+/*   Created: 2022/11/16 16:45:08 by mle-boud          #+#    #+#             */
+/*   Updated: 2022/11/16 17:24:14 by mle-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (ac != 5)
+	t_list	*last;
+
+	if (!new || !lst)
+		return ;
+	if (!*lst)
 	{
-		write(1, "e.g.: ./pipex file1 cmd1 cmd2 file2\n", 36);
-		exit(EXIT_FAILURE);
+		*lst = new;
+		return ;
 	}
-	else
-		ft_pipex(av);
-	return (0);
+	last = *lst;
+	while (last->next)
+		last = last->next;
+	last->next = new;
 }

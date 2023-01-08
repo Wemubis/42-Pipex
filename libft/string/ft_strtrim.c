@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-boud <mle-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/07 12:34:42 by mle-boud          #+#    #+#             */
-/*   Updated: 2023/01/07 12:34:42 by mle-boud         ###   ########.fr       */
+/*   Created: 2022/11/11 15:17:31 by mle-boud          #+#    #+#             */
+/*   Updated: 2022/11/14 20:18:34 by mle-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	if (ac != 5)
-	{
-		write(1, "e.g.: ./pipex file1 cmd1 cmd2 file2\n", 36);
-		exit(EXIT_FAILURE);
-	}
-	else
-		ft_pipex(av);
-	return (0);
+	size_t	i;
+	size_t	len;
+
+	if (!s1)
+		return (NULL);
+	if (!set)
+		return (ft_strdup(s1));
+	i = 0;
+	while (s1[i] && ft_strchr(set, s1[i]))
+		i++;
+	len = ft_strlen(s1) - 1;
+	while (len && ft_strchr(set, s1[len]))
+		len--;
+	return (ft_substr(s1, i, len + 1 - i));
 }

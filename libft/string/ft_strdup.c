@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-boud <mle-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/07 12:34:42 by mle-boud          #+#    #+#             */
-/*   Updated: 2023/01/07 12:34:42 by mle-boud         ###   ########.fr       */
+/*   Created: 2022/11/09 20:46:12 by mle-boud          #+#    #+#             */
+/*   Updated: 2022/11/14 12:14:34 by mle-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strdup(const char *s)
 {
-	if (ac != 5)
+	char	*dst;
+	int		i;
+
+	dst = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!dst)
+		return (NULL);
+	i = 0;
+	while (s[i])
 	{
-		write(1, "e.g.: ./pipex file1 cmd1 cmd2 file2\n", 36);
-		exit(EXIT_FAILURE);
+		dst[i] = s[i];
+		i++;
 	}
-	else
-		ft_pipex(av);
-	return (0);
+	dst[i] = '\0';
+	return (dst);
 }

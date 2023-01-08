@@ -1,25 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_unsigned.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-boud <mle-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/07 12:34:42 by mle-boud          #+#    #+#             */
-/*   Updated: 2023/01/07 12:34:42 by mle-boud         ###   ########.fr       */
+/*   Created: 2022/11/29 13:31:19 by mle-boud          #+#    #+#             */
+/*   Updated: 2022/11/29 13:42:34 by mle-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+static long	len_nb(unsigned int nb)
 {
-	if (ac != 5)
+	long	len;
+
+	len = 1;
+	while (nb)
 	{
-		write(1, "e.g.: ./pipex file1 cmd1 cmd2 file2\n", 36);
-		exit(EXIT_FAILURE);
+		len *= 10;
+		nb /= 10;
 	}
-	else
-		ft_pipex(av);
-	return (0);
+	return (len);
+}
+
+int	ft_putnbr_unsigned_printf(unsigned int n)
+{
+	long	nb;
+	int		len;
+	int		ret;
+
+	len = len_nb(n) / 10;
+	nb = n;
+	ret = 0;
+	if (nb == 0)
+		return (write(1, "0", 1));
+	while (len)
+	{
+		ft_putchar(nb / len + '0');
+		nb %= len;
+		len /= 10;
+		ret++;
+	}
+	return (ret);
 }

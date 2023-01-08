@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-boud <mle-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/07 12:34:42 by mle-boud          #+#    #+#             */
-/*   Updated: 2023/01/07 12:34:42 by mle-boud         ###   ########.fr       */
+/*   Created: 2022/11/16 17:37:11 by mle-boud          #+#    #+#             */
+/*   Updated: 2022/11/16 18:22:16 by mle-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	if (ac != 5)
+	t_list	*elem;
+	t_list	*adjacent;
+
+	if (!lst || !del)
+		return ;
+	if (!*lst)
 	{
-		write(1, "e.g.: ./pipex file1 cmd1 cmd2 file2\n", 36);
-		exit(EXIT_FAILURE);
+		*lst = NULL;
+		return ;
 	}
-	else
-		ft_pipex(av);
-	return (0);
+	elem = *lst;
+	while (elem)
+	{
+		adjacent = elem->next;
+		ft_lstdelone(elem, del);
+		elem = adjacent;
+	}
+	*lst = NULL;
 }

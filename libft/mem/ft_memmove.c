@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-boud <mle-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/07 12:34:42 by mle-boud          #+#    #+#             */
-/*   Updated: 2023/01/07 12:34:42 by mle-boud         ###   ########.fr       */
+/*   Created: 2022/11/09 11:43:31 by mle-boud          #+#    #+#             */
+/*   Updated: 2022/11/13 17:54:51 by mle-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (ac != 5)
-	{
-		write(1, "e.g.: ./pipex file1 cmd1 cmd2 file2\n", 36);
-		exit(EXIT_FAILURE);
-	}
+	char	*s1;
+	char	*s2;
+
+	s1 = (char *)src;
+	s2 = (char *)dst;
+	if (s1 < s2)
+		while (len-- > 0)
+			s2[len] = s1[len];
 	else
-		ft_pipex(av);
-	return (0);
+		ft_memcpy(s2, s1, len);
+	return (dst);
 }
