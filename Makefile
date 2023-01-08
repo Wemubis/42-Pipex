@@ -16,33 +16,39 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
+try = true
+
 HEADER = pipex.h
 
 ################ SRCS ################
-SRCS = main.c pipex.c \
+SRCS = main.c pipex.c wait_pids.c\
+		close_fds.c errors_process.c \
 		check_args.c left_right_pipe.c \
 
 ################ OBJS ################
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 
 ################ PHONY ################
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re $(NAME)
 
 ################ RULES ################
-all: $(NAME)
+all: otherMakefile $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) libft/libft.a
 	$(CC) $(CFLAGS) $^ -o $@
 
+otherMakefile:
+	make -C libft
+
 %.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -I. -c $< -o $@ libft/libft.a
+	$(CC) $(CFLAGS) -I. -c $< -o $@ 
 
 clean:
-	make -C ./libft/ clean
+	make -C libft clean
 	$(RM) $(OBJS)
 
 fclean: clean
-	make -C ./libft/ fclean
+	make -C libft fclean
 	$(RM) $(NAME)
 
 re: fclean all

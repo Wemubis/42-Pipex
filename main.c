@@ -12,7 +12,7 @@
 
 #include "pipex.h"
 
-int	main(int ac, char **av)
+int	main(int ac, char **av, char **env)
 {
 	if (ac != 5)
 	{
@@ -20,6 +20,6 @@ int	main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 	else
-		ft_pipex(av);
+		ft_pipex(av, env);
 	return (0);
 }

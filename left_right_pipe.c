@@ -12,40 +12,20 @@
 
 #include "pipex.h"
 
-int	left_hand_pipe(int child_pid_1, int fd[3], char ***cmd)
+void	left_hand_pipe(int fd, int fd_piped[2], char **cmd)
 {
-	if (child_pid_1 < 0)
-	{
-		perror("fork child_pid_1");
-		exit(EXIT_FAILURE);
-	}
-	if (child_pid_1 == 0)
-	{
-		dup2(fd[0], STDIN_FILENO);
-		dup2(fd[2], STDOUT_FILENO);
-		close(fd[0]);
-		close(fd[1]);
-		close(fd[2]);
-		execve(cmd[0][0], cmd[0], NULL);
-	}
-	return (0);
+	dup2(fd, STDIN_FILENO);
+	dup2(fd_piped[1], STDOUT_FILENO);
+	close(fd);
+	close_fds(fd_piped);
+	execve("/usr/bin/grep", cmd, NULL);
 }
 
-int	right_hand_pipe(int child_pid_2, int fd[3], char ***cmd)
+void	right_hand_pipe(int fd, int fd_piped[2], char **cmd)
 {
-	if (child_pid_2 < 0)
-	{
-		perror("fork child_pid_2");
-		exit(EXIT_FAILURE);
-	}
-	if (child_pid_2 == 0)
-	{
-		dup2(fd[2], STDIN_FILENO);
-		dup2(fd[1], STDOUT_FILENO);
-		close(fd[0]);
-		close(fd[1]);
-		close(fd[2]);
-		execve(cmd[1][0], cmd[1], NULL);
-	}
-	return (0);
+	dup2(fd_piped[0], STDIN_FILENO);
+	dup2(fd, STDOUT_FILENO);
+	close(fd);
+	close_fds(fd_piped);
+	execve("/usr/bin/wc", cmd, NULL);
 }

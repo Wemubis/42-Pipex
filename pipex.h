@@ -21,11 +21,14 @@
 # include "libft/libft.h"
 
 /*----------------- UTILS -----------------*/
-int		check_args(char **av, char *cmd1, char *cmd2);
-int		left_hand_pipe(int child_pid_1, int fd[3], char ***cmd);
-int		right_hand_pipe(int child_pid_2, int fd[3], char ***cmd);
+void	close_fds(int fd[2]);
+void	wait_pids(int child_pid);
+void	errors_process(char *string);
+void	check_args(char **av, char *cmd1, char *cmd2);
+void	left_hand_pipe(int fd, int fd_piped[2], char **cmd);
+void	right_hand_pipe(int fd, int fd_piped[2], char **cmd);
 
 /*--------------- FUNCTION ----------------*/
-int		ft_pipex(char **av);
+void	ft_pipex(char **av, char **env);
 
 #endif
