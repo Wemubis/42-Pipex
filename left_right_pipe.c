@@ -12,20 +12,32 @@
 
 #include "pipex.h"
 
-void	left_hand_pipe(int fd, int fd_piped[2], char **cmd)
+void	left_hand_pipe(int fd, int fd_piped[2], char **av, char **env)
 {
+	char	**cmd;
+	char	*path;
+
+	cmd = ft_split(av[2], 32);
+	path = get_path(cmd[0], env);
 	dup2(fd, STDIN_FILENO);
 	dup2(fd_piped[1], STDOUT_FILENO);
 	close(fd);
 	close_fds(fd_piped);
-	execve("/usr/bin/grep", cmd, NULL);
+	if (execve(path, cmd, NULL) == -1)
+		errors_process("execve");
 }
 
-void	right_hand_pipe(int fd, int fd_piped[2], char **cmd)
+void	right_hand_pipe(int fd, int fd_piped[2], char **av, char **env)
 {
+	char	**cmd;
+	char	*path;
+
+	cmd = ft_split(av[3], 32);
+	path = get_path(cmd[0], env);
 	dup2(fd_piped[0], STDIN_FILENO);
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
 	close_fds(fd_piped);
-	execve("/usr/bin/wc", cmd, NULL);
+	if (execve(path, cmd, NULL) == -1)
+		errors_process("execve");
 }

@@ -23,7 +23,8 @@ HEADER = pipex.h
 ################ SRCS ################
 SRCS = main.c pipex.c wait_pids.c\
 		close_fds.c errors_process.c \
-		check_args.c left_right_pipe.c \
+		check_files.c left_right_pipe.c \
+		get_path.c \
 
 ################ OBJS ################
 OBJS = $(patsubst %.c,%.o,$(SRCS))

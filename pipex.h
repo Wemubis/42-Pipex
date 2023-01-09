@@ -22,11 +22,12 @@
 
 /*----------------- UTILS -----------------*/
 void	close_fds(int fd[2]);
-void	wait_pids(int child_pid);
+void	wait_pids(int child_pid[2]);
 void	errors_process(char *string);
-void	check_args(char **av, char *cmd1, char *cmd2);
-void	left_hand_pipe(int fd, int fd_piped[2], char **cmd);
-void	right_hand_pipe(int fd, int fd_piped[2], char **cmd);
+void	check_files(char *file_1, char *file_2);
+char    *get_path(char *cmd, char **env);
+void	left_hand_pipe(int fd, int fd_piped[2], char **av, char **env);
+void	right_hand_pipe(int fd, int fd_piped[2], char **av, char **env);
 
 /*--------------- FUNCTION ----------------*/
 void	ft_pipex(char **av, char **env);

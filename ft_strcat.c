@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait_pid.c                                         :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-boud <mle-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/08 19:03:19 by mle-boud          #+#    #+#             */
-/*   Updated: 2023/01/08 19:04:34 by mle-boud         ###   ########.fr       */
+/*   Created: 2023/01/09 10:40:07 by mle-boud          #+#    #+#             */
+/*   Updated: 2023/01/09 10:40:07 by mle-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	wait_pids(int child_pid[2])
+char	*ft_strcat(char *s1, char const *s2)
 {
-	waitpid(child_pid[0], NULL, 0);
-	waitpid(child_pid[1], NULL, 0);
+	int	i;
+	int	j;
+
+	i = 0;
+	j = -1;
+	while (s1[i] != '\0')
+		i++;
+	while (s2[++j] != '\0')
+	{
+		s1[i] = s2[j];
+		i++;
+	}
+	s1[i] = '\0';
+	return (s1);
 }
