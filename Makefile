@@ -16,8 +16,6 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-try = true
-
 HEADER = pipex.h
 
 ################ SRCS ################
