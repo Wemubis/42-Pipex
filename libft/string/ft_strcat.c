@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mle-boud <mle-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/07 12:34:42 by mle-boud          #+#    #+#             */
-/*   Updated: 2023/01/07 12:34:42 by mle-boud         ###   ########.fr       */
+/*   Created: 2023/01/09 10:40:07 by mle-boud          #+#    #+#             */
+/*   Updated: 2023/01/09 10:40:07 by mle-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-int	main(int ac, char **av, char **env)
+char	*ft_strcat(char *s1, char const *s2)
 {
-	if (ac != 5)
+	int	i;
+	int	j;
+
+	i = 0;
+	j = -1;
+	while (s1[i] != '\0')
+		i++;
+	while (s2[++j] != '\0')
 	{
-		write(1, "e.g.: ./pipex file1 cmd1 cmd2 file2\n", 36);
-		exit(EXIT_FAILURE);
+		s1[i] = s2[j];
+		i++;
 	}
-	else
-		ft_pipex(av, env);
-	exit(EXIT_SUCCESS);
+	s1[i] = '\0';
+	return (s1);
 }
