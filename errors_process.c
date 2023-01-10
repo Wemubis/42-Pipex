@@ -12,8 +12,8 @@
 
 #include "pipex.h"
 
-void	errors_process(char *string)
+void	errors_process(void)
 {
-	perror(string);
+	write(2, strerror(errno), ft_strlen(strerror(errno)));
 	exit(EXIT_FAILURE);
 }

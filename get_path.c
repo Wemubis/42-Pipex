@@ -62,6 +62,6 @@ char	*get_path(char *cmd, char **env)
 		i++;
 	}
 	if (i > 0)
-		errors_process(cmd);
+		errors_process();
 	return (dst);
 }

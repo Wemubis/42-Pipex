@@ -18,11 +18,11 @@ void	check_files(char *file_1, char *file_2)
 	int	f2;
 
 	f1 = open(file_1, O_RDONLY);
-	if (f1 == -1)
-		errors_process("file 1");
+	if (f1 < 0)
+		errors_process();
 	close(f1);
 	f2 = open(file_2, O_CREAT, 0644);
-	if (f2 == -1)
-		errors_process("file 1");
+	if (f2 < 0)
+		errors_process();
 	close(f2);
 }

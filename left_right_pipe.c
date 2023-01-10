@@ -24,7 +24,7 @@ void	left_hand_pipe(int fd, int fd_piped[2], char **av, char **env)
 	close(fd);
 	close_fds(fd_piped);
 	if (execve(path, cmd, NULL) == -1)
-		errors_process("execve");
+		errors_process();
 }
 
 void	right_hand_pipe(int fd, int fd_piped[2], char **av, char **env)
@@ -39,5 +39,5 @@ void	right_hand_pipe(int fd, int fd_piped[2], char **av, char **env)
 	close(fd);
 	close_fds(fd_piped);
 	if (execve(path, cmd, NULL) == -1)
-		errors_process("execve");
+		errors_process();
 }

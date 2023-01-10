@@ -20,17 +20,19 @@ void	ft_pipex(char **av, char **env)
 
 	check_files(av[1], av[4]);
 	if (pipe(fd_piped) < 0)
-		errors_process("pipe");
+		errors_process();
 	fd[0] = open(av[1], O_RDONLY);
+	error_open(fd[0]);
 	fd[1] = open(av[4], O_WRONLY | O_TRUNC);
+	error_open(fd[1]);
 	child_pid[0] = fork();
 	if (child_pid[0] < 0)
-		errors_process("fork 1");
+		errors_process();
 	if (child_pid[0] == 0)
 		left_hand_pipe(fd[0], fd_piped, av, env);
 	child_pid[1] = fork();
 	if (child_pid[1] < 0)
-		errors_process("fork 2");
+		errors_process();
 	if (child_pid[1] == 0)
 		right_hand_pipe(fd[1], fd_piped, av, env);
 	close_fds(fd);

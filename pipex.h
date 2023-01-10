@@ -17,13 +17,15 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <stdio.h>
+# include <string.h>
+# include <errno.h>
 # include "libft/libft.h"
 
 /*----------------- UTILS -----------------*/
+void	error_open(int fd);
+void	errors_process(void);
 void	close_fds(int fd[2]);
 void	wait_pids(int child_pid[2]);
-void	errors_process(char *string);
 void	check_files(char *file_1, char *file_2);
 char	*get_path(char *cmd, char **env);
 void	left_hand_pipe(int fd, int fd_piped[2], char **av, char **env);
