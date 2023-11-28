@@ -31,7 +31,7 @@ L'implémentation de pipex se divise en plusieurs étapes. Le programme doit cr�
 1. **Clonage du dépôt :**
 
     ```bash
-    git clone <lien_du_depot>
+    git clone https://github.com/Wemubis/pipex.git
     ```
 
 2. **Compilation :**
